@@ -1,38 +1,41 @@
-import React from "react";
-import styled from "styled-components";
-import dummyImage from "../../assets/henry.jpg";
-import { useRecoilState } from "recoil";
-import { CartAtom } from "../../recoil/CartAtom";
+import React from 'react';
+import styled from 'styled-components';
+import dummyImage from '../../assets/henry.jpg';
+import { useCartStore } from '../../store/useCartStore';
 
 const ProductCard = ({ data }) => {
   // 구조분해할당을 통해 data.id, data.title 대신 간단하게 사용
   const { id, title, description, price } = data;
 
-  // 아톰 불러오기
-  const [cartItem, setCartItem] = useRecoilState(CartAtom);
+  // 상태 불러오기
+  const cart = useCartStore((state) => state.cart);
+  const addItem = useCartStore((state) => state.addItem);
 
   // 이미 장바구니에 들어있는지 확인
-  const isAlreadyInCart = cartItem.filter((e) => e.id === id).length;
+  const isAlreadyInCart = cart.filter((e) => e.id === id).length;
 
   /**
    * 장바구니에 있는지 확인후, 없을때만 아톰에 추가
    */
   const AddToCart = () => {
     if (!isAlreadyInCart) {
-      setCartItem((prev) => [...prev, data]);
+      addItem(data);
     }
   };
 
   return (
     <Wrapper>
-      <img width={276} height={276} src={dummyImage} alt={`${id}의 더미이미지`} />
+      <img
+        width={276}
+        height={276}
+        src={dummyImage}
+        alt={`${id}의 더미이미지`}
+      />
       <Price>{price.toLocaleString()}원</Price>
       <Haeding>{title}</Haeding>
       <MaxLine1>{description}</MaxLine1>
       <Button onClick={AddToCart} disabled={isAlreadyInCart}>
-        {isAlreadyInCart
-          ? `장바구니에 추가됬습니다`
-          : "장바구니에 추가"}
+        {isAlreadyInCart ? `장바구니에 추가됐습니다` : '장바구니에 추가'}
       </Button>
     </Wrapper>
   );

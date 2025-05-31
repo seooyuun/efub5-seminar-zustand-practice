@@ -1,15 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import dummyImage from "../../assets/henry.jpg";
-import { useSetRecoilState } from "recoil";
-import { CartAtom } from "../../recoil/CartAtom";
+import React from 'react';
+import styled from 'styled-components';
+import dummyImage from '../../assets/henry.jpg';
+import { useCartStore } from '../../store/useCartStore';
 
 const CartItem = ({ data }) => {
-  const setCartItem = useSetRecoilState(CartAtom);
+  const removeItem = useCartStore((state) => state.removeItem);
   const { id, title, description, price } = data;
 
   const removeFromCart = () => {
-    setCartItem((prev) => prev.filter((e) => e.id !== id));
+    removeItem(id);
   };
 
   return (

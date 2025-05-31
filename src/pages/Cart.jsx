@@ -1,23 +1,27 @@
-import { useRecoilValue } from "recoil";
-import {
-  CartAtom,
-  QuantitySelector,
-  TotalPriceSelector,
-} from "../recoil/CartAtom";
-import styled from "styled-components";
-import CartItem from "./../component/CartItem/CartItem";
+import styled from 'styled-components';
+import CartItem from './../component/CartItem/CartItem';
+import { useCartStore } from '../store/useCartStore';
 
 function Cart() {
-  const cartItem = useRecoilValue(CartAtom);
-  const TotalQuantity = useRecoilValue(QuantitySelector);
-  const TotalPrice = useRecoilValue(TotalPriceSelector);
+  const cart = useCartStore((state) => state.cart);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const Quantity = useCartStore((state) => state.getQuantity);
+  const TotalPrice = useCartStore((state) => state.getTotalPrice);
+
+  const clearAllItem = () => {
+    clearCart();
+  };
+
   return (
     <>
-      <Heading>장바구니</Heading>
+      <Header>
+        <Heading>장바구니</Heading>
+        <Button onClick={clearAllItem}>초기화</Button>
+      </Header>
 
       <ItemWrapper>
-        {cartItem.length ? (
-          cartItem.map((e) => <CartItem data={e} key={e.id} />)
+        {cart.length ? (
+          cart.map((e) => <CartItem data={e} key={e.id} />)
         ) : (
           <NoItems>상품이 없습니다</NoItems>
         )}
@@ -26,11 +30,11 @@ function Cart() {
       <TotalPriceWrapper>
         <ColumnWrapper>
           <span>총 갯수</span>
-          <Heading>{`${TotalQuantity}개`}</Heading>
+          <Heading>{`${Quantity()}개`}</Heading>
         </ColumnWrapper>
         <ColumnWrapper>
           <span>총 가격</span>
-          <Heading>{`${TotalPrice}원`}</Heading>
+          <Heading>{`${TotalPrice()}원`}</Heading>
         </ColumnWrapper>
       </TotalPriceWrapper>
     </>
@@ -42,6 +46,12 @@ const ColumnWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+`;
 const Heading = styled.span`
   font-size: 20px;
   font-weight: var(--bold);
@@ -72,5 +82,13 @@ const NoItems = styled.div`
   text-align: center;
   border: 1px solid var(--line-gray);
 `;
-
+const Button = styled.button`
+  padding: 8px;
+  color: #fff;
+  background-color: var(--main);
+  &:disabled {
+    background-color: var(--line-gray);
+    color: var(--font-gray);
+  }
+`;
 export default Cart;

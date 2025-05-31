@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import ProductCard from "./../component/ProductCard/ProductCard";
-import dummyData from "./../model/dummyData";
+import styled from 'styled-components';
+import ProductCard from './../component/ProductCard/ProductCard';
+import dummyData from './../model/dummyData';
 
 function Main() {
   return (
