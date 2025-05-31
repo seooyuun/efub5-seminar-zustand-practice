@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import CartItem from './../component/CartItem/CartItem';
-import { useCartStore } from '../store/useCartStore';
+
 
 function Cart() {
-  const cart = useCartStore((state) => state.cart);
-  const clearCart = useCartStore((state) => state.clearCart);
-  const Quantity = useCartStore((state) => state.getQuantity);
-  const TotalPrice = useCartStore((state) => state.getTotalPrice);
+  const cart = 
+  const clearCart = 
+  const Quantity = 
+  const TotalPrice = 
 
   const clearAllItem = () => {
-    clearCart();
+
   };
 
   return (
@@ -40,6 +40,7 @@ function Cart() {
     </>
   );
 }
+
 const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;

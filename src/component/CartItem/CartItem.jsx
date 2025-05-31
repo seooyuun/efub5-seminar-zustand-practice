@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import dummyImage from '../../assets/henry.jpg';
-import { useCartStore } from '../../store/useCartStore';
 
 const CartItem = ({ data }) => {
-  const removeItem = useCartStore((state) => state.removeItem);
+
   const { id, title, description, price } = data;
+  const removeItem = 
 
   const removeFromCart = () => {
-    removeItem(id);
+
   };
 
   return (

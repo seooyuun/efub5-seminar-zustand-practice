@@ -1,26 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import dummyImage from '../../assets/henry.jpg';
-import { useCartStore } from '../../store/useCartStore';
 
 const ProductCard = ({ data }) => {
   // 구조분해할당을 통해 data.id, data.title 대신 간단하게 사용
   const { id, title, description, price } = data;
 
   // 상태 불러오기
-  const cart = useCartStore((state) => state.cart);
-  const addItem = useCartStore((state) => state.addItem);
+  const cart = 
+  const addItem = 
 
   // 이미 장바구니에 들어있는지 확인
   const isAlreadyInCart = cart.filter((e) => e.id === id).length;
 
-  /**
-   * 장바구니에 있는지 확인후, 없을때만 아톰에 추가
-   */
+
+  //장바구니에 있는지 확인후, 없을때만 장바구니에 추가
   const AddToCart = () => {
-    if (!isAlreadyInCart) {
-      addItem(data);
-    }
+
   };
 
   return (

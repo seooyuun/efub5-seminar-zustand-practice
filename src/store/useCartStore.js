@@ -1,47 +1,21 @@
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
-import { immer } from 'zustand/middleware/immer';
 
-export const useCartStore = create(
-  devtools(
-    persist(
-      immer((set, get) => ({
-        cart: [],
-        addItem: (item) =>
-          set(
-            (state) => {
-              state.cart.push(item);
-            },
-            undefined,
-            'addItem'
-          ),
-        removeItem: (id) =>
-          set(
-            (state) => {
-              state.cart = state.cart.filter((item) => item.id !== id);
-            },
-            undefined,
-            'removeItem'
-          ),
-        clearCart: () =>
-          set(
-            (state) => {
-              state.cart = [];
-            },
-            undefined,
-            'clearCart'
-          ),
-        getQuantity: () => {
-          const { cart } = get();
-          return cart.length.toLocaleString();
-        },
-        getTotalPrice: () => {
-          const { cart } = get();
-          return cart.reduce((acc, cur) => acc + cur.price, 0).toLocaleString();
-        },
-      })),
-      { name: 'cartStore' }
-    ),
-    { name: 'cartStore' }
-  )
-);
+
+export const useCartStore = create((set, get) => ({
+  cart: [], //장바구니 상태
+
+  addItem: //장바구니에 아이템 추가
+  
+  removeItem: //장바구니에서 아이템 삭제(id 이용)
+  
+  clearCart: //장바구니에 있는 모든 아이템 삭제
+  
+  getQuantity: //장바구니에 있는 아이템 개수 리턴(get 함수 사용),
+
+  getTotalPrice: () => {
+    const { cart } = get();
+    return cart.reduce((acc, cur) => acc + cur.price, 0).toLocaleString();
+  }, //장바구니 아이템 가격 총합
+}));
+
+
