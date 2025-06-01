@@ -5,10 +5,10 @@ import dummyImage from '../../assets/henry.jpg';
 const CartItem = ({ data }) => {
 
   const { id, title, description, price } = data;
-  const removeItem = 
+  const removeItem = //스토어 액션 불러오기
 
   const removeFromCart = () => {
-
+    //삭제 함수 구현
   };
 
   return (

@@ -6,7 +6,7 @@ const ProductCard = ({ data }) => {
   // 구조분해할당을 통해 data.id, data.title 대신 간단하게 사용
   const { id, title, description, price } = data;
 
-  // 상태 불러오기
+  // 스토어 상태/액션 불러오기
   const cart = 
   const addItem = 
 

@@ -3,13 +3,15 @@ import CartItem from './../component/CartItem/CartItem';
 
 
 function Cart() {
+
+  //스토어 상태/액션 불러오기
   const cart = 
   const clearCart = 
   const Quantity = 
   const TotalPrice = 
 
   const clearAllItem = () => {
-
+    //장바구니 초기화 함수
   };
 
   return (
