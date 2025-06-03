@@ -1,14 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
-import dummyImage from '../../assets/henry.jpg';
+import React from "react";
+import styled from "styled-components";
+import dummyImage from "../../assets/henry.jpg";
+import { useCartStore } from "../../store/useCartStore";
 
 const CartItem = ({ data }) => {
-
   const { id, title, description, price } = data;
-  const removeItem = //스토어 액션 불러오기
+  const removeItem = useCartStore((state) => state.removeItem);
+  //스토어 액션 불러오기
 
   const removeFromCart = () => {
-    //삭제 함수 구현
+    return removeItem(id); //삭제 함수 구현
   };
 
   return (

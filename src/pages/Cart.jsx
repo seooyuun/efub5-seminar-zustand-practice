@@ -1,17 +1,17 @@
-import styled from 'styled-components';
-import CartItem from './../component/CartItem/CartItem';
-
+import styled from "styled-components";
+import CartItem from "./../component/CartItem/CartItem";
+import { useCartStore } from "../store/useCartStore";
 
 function Cart() {
-
   //스토어 상태/액션 불러오기
-  const cart = 
-  const clearCart = 
-  const Quantity = 
-  const TotalPrice = 
+  const cart = useCartStore((state) => state.cart);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const Quantity = useCartStore((state) => state.getQuantity);
+  const TotalPrice = useCartStore((state) => state.getTotalPrice);
 
   const clearAllItem = () => {
     //장바구니 초기화 함수
+    return clearCart();
   };
 
   return (
